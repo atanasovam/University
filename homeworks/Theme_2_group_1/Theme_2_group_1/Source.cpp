@@ -34,13 +34,51 @@ void main() {
 }
 
 void ex1() {
-	cout << "Please, enter an integer: ";
-	int number;
-	cin >> number;
+	int num;
+	cout << "Enter number: ";
+	cin >> num;
+	cout << "Enter which position to take from the number: ";
+	int n;
+	cin >> n;
 
-	int currentBiggestNumber = INT16_MIN;
+	int symbol = (int)(num / pow(10, n - 1)) % 10;
+	cout << "The cipher at that position is: " << symbol << endl;
 
-	cout << "Biggest digit in the number you entered is " << currentBiggestNumber << endl;
+	if (symbol % 2 == 0) cout << "The cipher at that position is even." << endl;
+	else cout << "The cipher at that position is odd." << endl;
+
+	int copy = num;
+	int max = copy % 10;
+	copy = copy / 10;
+	while (copy != 0) {
+		if (max < copy % 10) {
+			max = copy % 10;
+		}
+		copy = copy / 10;
+	}
+	cout << "The maximum cipher is: " << max << endl;
+
+	copy = num;
+	int sum = 0;
+	while (copy != 0) {
+		sum += copy % 10;
+		copy = copy / 10;
+	}
+	cout << "The sum of the ciphers is: " << sum << endl;
+
+	if (sum % 2 == 0) cout << "The sum is even." << endl;
+	else cout << "The sum is odd." << endl;
+
+	int br = 0;
+	cout << "The divisors of the entered number are: ";
+	for (int i = 1; i <= num; i++) {
+		if (num%i == 0) {
+			br++;
+			cout << i << " ";
+		}
+	}
+	cout << endl;
+	cout << "The number of divisors is: " << br << endl;
 }
 
 int getOccurrence(int numbers[], char length);
@@ -61,6 +99,16 @@ int getOccurrence(int numbers[], char length) {
 	return res;
 }
 
+int getMissingNumber(int sequence[], int sequenceLength);
+void ex3() {
+	const char sequenceLength = 5;
+
+	int numbersSequence[sequenceLength] = { 1, 2, 4, 5, 6 };
+	int missingNumber = getMissingNumber(numbersSequence, sequenceLength);
+
+	cout << "The missing number in the sequence is " << missingNumber << endl;
+}
+
 int getMissingNumber(int sequence[], int sequenceLength) {
 	int total = (sequenceLength + 1)*(sequenceLength + 2) / 2;
 
@@ -69,15 +117,6 @@ int getMissingNumber(int sequence[], int sequenceLength) {
 	}
 
 	return total;
-}
-
-void ex3() {
-	const char sequenceLength = 5;
-
-	int numbersSequence[sequenceLength] = { 1, 2, 4, 5, 6 };
-	int missingNumber = getMissingNumber(numbersSequence, sequenceLength);
-
-	cout << "The missing number in the sequence is " << missingNumber << endl;
 }
 
 int calculateSum(int a, int b);
