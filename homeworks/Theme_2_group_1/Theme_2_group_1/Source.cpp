@@ -34,36 +34,43 @@ void main() {
 }
 
 void ex1() {
-	int num;
+	int number;
 	cout << "Enter number: ";
-	cin >> num;
+	cin >> number;
+	
 	cout << "Enter which position to take from the number: ";
 	int n;
 	cin >> n;
 
-	int symbol = (int)(num / pow(10, n - 1)) % 10;
+	int symbol = (int)(number / pow(10, n - 1)) % 10;
 	cout << "The cipher at that position is: " << symbol << endl;
 
 	if (symbol % 2 == 0) cout << "The cipher at that position is even." << endl;
 	else cout << "The cipher at that position is odd." << endl;
 
-	int copy = num;
+	int copy = number;
 	int max = copy % 10;
+	
 	copy = copy / 10;
+
 	while (copy != 0) {
 		if (max < copy % 10) {
 			max = copy % 10;
 		}
+	
 		copy = copy / 10;
 	}
+	
 	cout << "The maximum cipher is: " << max << endl;
 
-	copy = num;
+	copy = number;
+	
 	int sum = 0;
 	while (copy != 0) {
 		sum += copy % 10;
 		copy = copy / 10;
 	}
+	
 	cout << "The sum of the ciphers is: " << sum << endl;
 
 	if (sum % 2 == 0) cout << "The sum is even." << endl;
@@ -71,12 +78,14 @@ void ex1() {
 
 	int br = 0;
 	cout << "The divisors of the entered number are: ";
-	for (int i = 1; i <= num; i++) {
-		if (num%i == 0) {
+	
+	for (int i = 1; i <= number; i++) {
+		if (number%i == 0) {
 			br++;
 			cout << i << " ";
 		}
 	}
+	
 	cout << endl;
 	cout << "The number of divisors is: " << br << endl;
 }
